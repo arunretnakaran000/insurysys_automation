@@ -70,7 +70,7 @@ export default class UserPage {
     }
 
     async UserMenuFunctionality(userRole: string) {
-        await fixture.page.waitForTimeout(3000);
+        await fixture.page.waitForTimeout(4000);
         await this.page.click(this.Elements.UserMenu);
         await fixture.page.waitForTimeout(3000);
         await this.page.click(this.Elements.SearchUser)
