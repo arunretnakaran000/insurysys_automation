@@ -6,6 +6,7 @@
             "./node_modules/@types",
             "src/helper/types"
         ],
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "lib": ["ES2015"]
     }
 }
