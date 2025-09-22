@@ -1,0 +1,81 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-functionality-for-insursys-application;verify-the-validation-with-case-sensitivity-login-credentials",
+        "keyword": "Scenario Outline",
+        "line": 17,
+        "name": "Verify the validation with Case Sensitivity login credentials",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4472416599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 18,
+            "name": "user navigates to the INSURSYS application",
+            "match": {
+              "location": "src\\test\\steps\\LoginStep.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1887002999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 19,
+            "name": "user enter case insensitive credentials for INSURSYS",
+            "match": {
+              "location": "src\\test\\steps\\LoginStep.ts:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 186721199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "user should see an error message for insensitive credentials",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 975959499
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@LOGIN3",
+            "line": 16
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-functionality-for-insursys-application",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login functionality for INSURSYS application",
+    "tags": [],
+    "uri": "src\\test\\features\\Login.feature"
+  }
+]

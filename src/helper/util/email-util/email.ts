@@ -7,14 +7,14 @@ async function emailSend(error) {
             port: 587,
             secure: false,
             auth: {
-                user: 'akhil.krishnan@interfacesys.com',
-                pass: 'Interface6',
+                user: 'aretnakaran@westpoint.net',
+                pass: 'Interface@333',
             },
         });
 
         let message = {
-            from: 'akhil.krishnan@interfacesys.com',
-            to: 'agopalakrishnan@suyati.com',
+            from: 'aretnakaran@westpoint.net',
+            to: 'aretnakaran@westpoint.net',
             subject: 'Testing Subject',
             text: error,
             attachments: [

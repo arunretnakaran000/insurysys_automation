@@ -1,46 +1,52 @@
-import { Given, When, Then } from '@cucumber/cucumber';
-import { expect } from '@playwright/test';
+import { Given, When, Then, setDefaultTimeout } from '@cucumber/cucumber';
+import * as data from "../../helper/util/test-data/SMdata.json";
+import {fixture} from '../../hooks/pageFixture';
+import myLogin from '../../pages/myLogin';
+setDefaultTimeout(60 * 1000 * 2);
 
 
-Given('user navigates to the APM application', async function () {
-  // Implement navigation logic here
-  await this.page.goto('https://your-apm-app-url.com');
+
+let TestLogin: myLogin
+
+Given('user navigates to the INSURSYS application', async function () {
+TestLogin = new myLogin(fixture.page);
+await TestLogin.navigateToSite(data.Title);
 });
 
-When('user enter valid login credentials for APM', async function () {
-  // Implement valid login logic here
-  await this.page.fill('#username', 'validUser');
-  await this.page.fill('#password', 'validPassword');
-  await this.page.click('#loginButton');
+When('user enter valid login credentials for INSURSYS', async function () {
+await TestLogin.enterUsername(data.userName);
+await TestLogin.enterPassword(data.userPass);
+
 });
 
 Then('user should login successfully with valid login', async function () {
-  // Implement successful login check here
-  await expect(this.page).toHaveURL(/dashboard/);
-  await expect(this.page.locator('.welcome-message')).toBeVisible();
+ 
+  await TestLogin.ClickLogin();
 });
 
-When('user enter invalid login credentials for APM', async function () {
-  // Implement invalid login logic here
-  await this.page.fill('#username', 'invalidUser');
-  await this.page.fill('#password', 'invalidPassword');
-  await this.page.click('#loginButton');
+When('user enter invalid login credentials for INSURSYS', async function () {
+
+    await TestLogin.enterUsername(data.invalidUserName);
+    await TestLogin.enterPassword(data.invalidPassword);
 });
 
-Then('user should see an error message and remain on the login page', async function () {
-  // Implement error message check here
-  await expect(this.page.locator('.error-message')).toBeVisible();
-  await expect(this.page).toHaveURL(/login/);
+Then('user sign out from the application', async function () {
+    await TestLogin.ClickSignOut();
 });
 
-When('inactive user enter login credentials for APM', async function () {
-  // Implement inactive user login logic here
-  await this.page.fill('#username', 'inactiveUser');
-  await this.page.fill('#password', 'inactivePassword');
-  await this.page.click('#loginButton');
+Then('user should see an error message for invalid login', async function () {
+
+    await TestLogin.ClickLogin();
+    await TestLogin.verifyErrorMessage(data.InvalidMessage);
 });
 
-Then('user should see an inactive user error message', async function () {
-  // Implement inactive user error message check here
-  await expect(this.page.locator('.inactive-user-message')).toBeVisible();
+When('user enter case insensitive credentials for INSURSYS', async function () {
+
+    await TestLogin.enterUsername(data.userName);
+    await TestLogin.enterPassword(data.userPass3);
+});
+Then('user should see an error message for case insensitive credentials', async function () {
+
+    await TestLogin.ClickLogin();
+    await TestLogin.verifyerrorMessage2(data.InvalidMessage2);
 });
